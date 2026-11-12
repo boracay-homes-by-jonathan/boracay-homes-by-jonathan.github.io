@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Escana Boracay by Brittany | Studios from ₱21.1M</title>
-<meta name="description" content="Escana Boracay Tower 2, Station Zero. Studio from ₱21,098,000, 25% off on spot cash until Nov 30, 2026. Get your unit's payment computation from Jonathan Rebullo, Country Manager under Vistaland.">
-<meta property="og:title" content="Escana Boracay by Brittany: studios from ₱21.1M">
+<title>Escana Boracay by Brittany | 1-Bedroom from ₱30.4M, Studios from ₱21.1M</title>
+<meta name="description" content="Escana Boracay Tower 2, Station Zero. 1-bedroom units with balcony from ₱30.4M, studios from ₱21.1M. Get your payment computation from Jonathan Rebullo, Country Manager under Vistaland.">
+<meta property="og:title" content="Escana Boracay: 1-bedroom homes with balcony from ₱30.4M">
 <meta property="og:description" content="Award-winning residences at Station Zero, Boracay. Only 31 of 85 units left. Get your payment computation.">
 <meta property="og:image" content="https://boracay-homes-by-jonathan.github.io/images/hero-front-view.jpg">
 <meta property="og:image:width" content="1600">
@@ -74,6 +74,8 @@
   @keyframes fill{from{width:0}}
   @media (prefers-reduced-motion: reduce){.sc-bar span{animation:none}}
   .hero .sub b.gold{color:var(--gold);font-weight:600}
+  .hero .also{margin:-12px 0 20px;font-size:14px}
+  .hero .also a{color:#cfd8d5;text-decoration:underline;text-underline-offset:3px;display:inline-flex;min-height:44px;align-items:center}
   .hero .ctas{display:flex;flex-direction:column;gap:10px}
   .hero-img{margin-top:34px;position:relative}
   .hero-img img{aspect-ratio:16/9;object-fit:cover}
@@ -198,6 +200,20 @@
   .promo-ended{background:#FFF6DD;color:#6b5200;border:1px solid #f0dca0;border-radius:var(--r);padding:12px 14px;font-size:14px;margin-bottom:16px}
   .promo-ended[hidden]{display:none}
 
+  /* ===== Featured 1 bedroom ===== */
+  .featured{background:var(--paper)}
+  .feat-grid{display:grid;gap:22px;align-items:center}
+  @media(min-width:860px){.feat-grid{grid-template-columns:1.1fr 1fr;gap:44px}}
+  .feat-img img{border:1px solid var(--line);border-radius:var(--r);background:#fff}
+  .feat-img figcaption a{display:inline-flex;min-height:44px;align-items:center;color:var(--deep);font-weight:600;font-size:13.5px}
+  .feat-price{font-size:16px;color:var(--muted);margin:-4px 0 12px}
+  .feat-price b{font-family:var(--serif);font-size:30px;color:var(--deep)}
+  .feat-list{list-style:none;display:grid;gap:8px;margin-bottom:16px;font-size:15px}
+  .feat-list li::before{content:"✓";color:var(--gold-ink);font-weight:600;margin-right:8px}
+  .feat-left{display:grid;gap:6px}
+  .feat-left span{background:var(--sand);border-radius:8px;padding:10px 12px;font-size:14px}
+  .feat-left b{color:var(--deep);font-size:16px}
+
   /* ===== Why Escana ===== */
   .why{background:var(--paper)}
   .why-grid{display:grid;gap:22px;align-items:center}
@@ -284,8 +300,9 @@
       <div>
         <div class="award">🏆 Best Mixed-Use Development 2026</div>
         <div class="eyebrow">Tower 2 · Station Zero, Boracay</div>
-        <h1>Your home in Boracay</h1>
-        <p class="sub">Studios from <b class="gold">₱21.1M</b><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
+        <h1>Your 1-bedroom home in Boracay</h1>
+        <p class="sub">54.33 sqm with balcony · from <b class="gold">₱30.4M</b><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
+        <p class="also"><a href="#prices">Studios also available from ₱21.1M →</a></p>
 
         <!-- Scarcity bar: 85 units in Tower 2 (building specs), 31 available per the Nov 3, 2026 availability chart -->
         <div class="scarcity">
@@ -295,7 +312,7 @@
 
         <div class="ctas">
           <a class="btn" href="#inquire">Get my payment computation</a>
-          <a class="btn btn-outline" href="#prices">See unit prices</a>
+          <a class="btn btn-outline" href="#featured">See the 1-bedroom</a>
         </div>
       </div>
       <div class="hero-img">
@@ -306,6 +323,33 @@
   </div>
 </header>
 
+<!-- ===================== FEATURED: 1 BEDROOM ===================== -->
+<section class="featured" id="featured">
+  <div class="wrap feat-grid">
+    <figure class="feat-img">
+      <img src="images/layout-1br-deluxe.jpg" alt="1 Bedroom Deluxe unit floor plan, 54.33 sqm with balcony" loading="lazy" width="2000" height="1414">
+      <figcaption><a href="images/layout-1br-deluxe.jpg" target="_blank" rel="noopener">View floor plan full size</a></figcaption>
+    </figure>
+    <div>
+      <div class="kicker">Featured unit</div>
+      <h2>1 Bedroom Deluxe</h2>
+      <p class="feat-price">from <b>₱30,415,000</b></p>
+      <ul class="feat-list">
+        <li>54.33 sqm with private balcony</li>
+        <li>Separate bedroom, ideal for a couple or a small family</li>
+        <li>Bathtub, water heater and complete kitchen system</li>
+        <li>Reservation fee ₱300,000</li>
+      </ul>
+      <div class="feat-left">
+        <span><b>8</b> 1 BR Deluxe units left</span>
+        <span><b>2</b> 1 BR Premium units left (60.33 – 61.70 sqm)</span>
+      </div>
+      <p class="small muted" style="margin:6px 0 16px">Availability as of November 3, 2026.</p>
+      <a class="btn btn-dark" href="#inquire">Get my 1-bedroom computation</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== PRICES ===================== -->
 <section id="prices">
   <div class="wrap">
@@ -315,6 +359,48 @@
     <p class="muted">Starting prices per unit type, inclusive of 12% VAT, registration and miscellaneous charges. Prices vary by floor and view.</p>
 
     <div class="units">
+      <div class="flip" data-flip data-name="1 BR Deluxe">
+        <div class="flip-inner">
+          <div class="face unit front">
+        <div class="unit-head">
+          <div><h3>1 BR Deluxe</h3><div class="size">54.33 sqm · with balcony · 8 units available</div></div>
+          <div class="price"><small>FROM</small>₱30,415,000</div>
+        </div>
+        <div class="row save"><span>Spot cash, save 25%</span><b>− ₱7,603,750</b></div>
+        <div class="row"><span>Reservation fee</span><b>₱300,000</b></div>
+        <div class="row monthly"><span>Monthly, 48 months<br><span class="small muted">20% down option</span></span><b>₱120,479</b></div>
+        <div class="meta">Lowest-priced units: 2F-A (Village Park View), 2F-G</div>
+            <button type="button" class="flip-btn" data-flip-toggle aria-expanded="false">↻ See floor plan</button>
+          </div>
+          <div class="face unit back" aria-hidden="true">
+            <div class="back-head"><h3>1 BR Deluxe</h3><span>Floor plan · 54.33 sqm</span></div>
+            <img src="images/layout-1br-deluxe.jpg" alt="1 BR Deluxe unit floor plan" loading="lazy" width="2000" height="1400">
+            <div class="back-actions"><a href="images/layout-1br-deluxe.jpg" target="_blank" rel="noopener">View full size</a><button type="button" class="flip-btn" data-flip-toggle>↻ Back to prices</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip" data-flip data-name="1 BR Premium">
+        <div class="flip-inner">
+          <div class="face unit front">
+        <div class="unit-head">
+          <div><h3>1 BR Premium</h3><div class="size">60.33 – 61.70 sqm · with balcony · only 2 left</div></div>
+          <div class="price"><small>FROM</small>₱33,591,000</div>
+        </div>
+        <div class="row save"><span>Spot cash, save 25%</span><b>− ₱8,397,750</b></div>
+        <div class="row"><span>Reservation fee</span><b>₱300,000</b></div>
+        <div class="row monthly"><span>Monthly, 48 months<br><span class="small muted">20% down option</span></span><b>₱133,713</b></div>
+        <div class="meta">Available: 2F-I and 2F-H, Central Road View</div>
+            <button type="button" class="flip-btn" data-flip-toggle aria-expanded="false">↻ See floor plan</button>
+          </div>
+          <div class="face unit back" aria-hidden="true">
+            <div class="back-head"><h3>1 BR Premium</h3><span>Floor plan · 60.33 – 61.70 sqm</span></div>
+            <img src="images/layout-1br-premium.jpg" alt="1 BR Premium unit floor plan" loading="lazy" width="2000" height="1400">
+            <div class="back-actions"><a href="images/layout-1br-premium.jpg" target="_blank" rel="noopener">View full size</a><button type="button" class="flip-btn" data-flip-toggle>↻ Back to prices</button></div>
+          </div>
+        </div>
+      </div>
+
       <div class="flip" data-flip data-name="Studio Deluxe">
         <div class="flip-inner">
           <div class="face unit front">
@@ -378,48 +464,6 @@
         </div>
       </div>
 
-      <div class="flip" data-flip data-name="1 BR Deluxe">
-        <div class="flip-inner">
-          <div class="face unit front">
-        <div class="unit-head">
-          <div><h3>1 BR Deluxe</h3><div class="size">54.33 sqm · with balcony · 8 units available</div></div>
-          <div class="price"><small>FROM</small>₱30,415,000</div>
-        </div>
-        <div class="row save"><span>Spot cash, save 25%</span><b>− ₱7,603,750</b></div>
-        <div class="row"><span>Reservation fee</span><b>₱300,000</b></div>
-        <div class="row monthly"><span>Monthly, 48 months<br><span class="small muted">20% down option</span></span><b>₱120,479</b></div>
-        <div class="meta">Lowest-priced units: 2F-A (Village Park View), 2F-G</div>
-            <button type="button" class="flip-btn" data-flip-toggle aria-expanded="false">↻ See floor plan</button>
-          </div>
-          <div class="face unit back" aria-hidden="true">
-            <div class="back-head"><h3>1 BR Deluxe</h3><span>Floor plan · 54.33 sqm</span></div>
-            <img src="images/layout-1br-deluxe.jpg" alt="1 BR Deluxe unit floor plan" loading="lazy" width="2000" height="1400">
-            <div class="back-actions"><a href="images/layout-1br-deluxe.jpg" target="_blank" rel="noopener">View full size</a><button type="button" class="flip-btn" data-flip-toggle>↻ Back to prices</button></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip" data-flip data-name="1 BR Premium">
-        <div class="flip-inner">
-          <div class="face unit front">
-        <div class="unit-head">
-          <div><h3>1 BR Premium</h3><div class="size">60.33 – 61.70 sqm · with balcony · only 2 left</div></div>
-          <div class="price"><small>FROM</small>₱33,591,000</div>
-        </div>
-        <div class="row save"><span>Spot cash, save 25%</span><b>− ₱8,397,750</b></div>
-        <div class="row"><span>Reservation fee</span><b>₱300,000</b></div>
-        <div class="row monthly"><span>Monthly, 48 months<br><span class="small muted">20% down option</span></span><b>₱133,713</b></div>
-        <div class="meta">Available: 2F-I and 2F-H, Central Road View</div>
-            <button type="button" class="flip-btn" data-flip-toggle aria-expanded="false">↻ See floor plan</button>
-          </div>
-          <div class="face unit back" aria-hidden="true">
-            <div class="back-head"><h3>1 BR Premium</h3><span>Floor plan · 60.33 – 61.70 sqm</span></div>
-            <img src="images/layout-1br-premium.jpg" alt="1 BR Premium unit floor plan" loading="lazy" width="2000" height="1400">
-            <div class="back-actions"><a href="images/layout-1br-premium.jpg" target="_blank" rel="noopener">View full size</a><button type="button" class="flip-btn" data-flip-toggle>↻ Back to prices</button></div>
-          </div>
-        </div>
-      </div>
-
       <div class="unit request">
         <div>
           <div class="unit-head">
@@ -439,26 +483,26 @@
     <div class="promo-ended" hidden>The 25% spot cash promo ended on November 30, 2026. Message me for the latest payment terms.</div>
     <div class="kicker">Payment options</div>
     <h2>Three ways to pay</h2>
-    <p class="muted">Example below: <strong>Studio Deluxe, Unit 6F-K</strong> (available), list price <strong>₱21,708,000</strong>. Every option starts with a ₱150,000 reservation fee, which is already deducted from the amounts shown.</p>
+    <p class="muted">Example below: <strong>1 BR Deluxe, Unit 2F-A</strong> (available), list price <strong>₱30,415,000</strong>. Every option starts with a ₱300,000 reservation fee, which is already deducted from the amounts shown.</p>
 
-    <!-- Quick comparison: columns = options, rows = payment stages -->
+    <!-- Quick comparison: columns = options, rows = payment stages (1 BR Deluxe 2F-A) -->
     <div class="cmp">
       <div class="cmp-head"><span>1 · Spot cash</span><span>2 · 5% spot</span><span>3 · 20% down</span></div>
 
       <div class="cmp-label">Total price you pay</div>
-      <div class="cmp-row strong"><span>₱16,281,000<small>25% off</small></span><span>₱20,622,600<small>5% off</small></span><span>₱21,708,000<small>no discount</small></span></div>
+      <div class="cmp-row strong"><span>₱22,811,250<small>25% off</small></span><span>₱28,894,250<small>5% off</small></span><span>₱30,415,000<small>no discount</small></span></div>
 
       <div class="cmp-label">On reservation</div>
-      <div class="cmp-row"><span>₱150,000</span><span>₱150,000</span><span>₱150,000</span></div>
+      <div class="cmp-row"><span>₱300,000</span><span>₱300,000</span><span>₱300,000</span></div>
 
       <div class="cmp-label">Within 30 days</div>
-      <div class="cmp-row"><span>₱16,131,000<small>fully paid</small></span><span>₱881,130</span><span class="none">—</span></div>
+      <div class="cmp-row"><span>₱22,511,250<small>fully paid</small></span><span>₱1,144,713</span><span class="none">—</span></div>
 
       <div class="cmp-label">Every month for 48 months</div>
-      <div class="cmp-row hl"><span class="none">—</span><span>₱85,928</span><span>₱87,325</span></div>
+      <div class="cmp-row hl"><span class="none">—</span><span>₱120,393</span><span>₱120,479</span></div>
 
       <div class="cmp-label">After 48 months (bank loan or cash)</div>
-      <div class="cmp-row"><span class="none">—</span><span>₱15,466,950<small>75% balance</small></span><span>₱17,366,400<small>80% balance</small></span></div>
+      <div class="cmp-row"><span class="none">—</span><span>₱21,670,688<small>75% balance</small></span><span>₱24,332,000<small>80% balance</small></span></div>
     </div>
     <p class="small muted" style="margin-top:8px">Each column adds up to its total price. Details of each option below.</p>
 
@@ -471,10 +515,10 @@
         <p class="best">Best if you can pay in full. Biggest discount.</p>
         <div class="bar"><span class="seg s-now" style="width:100%">100% within 30 days</span></div>
         <ol class="steps">
-          <li><span>List price</span><b>₱21,708,000</b></li>
-          <li><span>Less 25% discount</span><b class="green">− ₱5,427,000</b></li>
-          <li><span>Less reservation fee</span><b>− ₱150,000</b></li>
-          <li class="total"><span>Pay within 30 days</span><b>₱16,131,000</b></li>
+          <li><span>List price</span><b>₱30,415,000</b></li>
+          <li><span>Less 25% discount</span><b class="green">− ₱7,603,750</b></li>
+          <li><span>Less reservation fee</span><b>− ₱300,000</b></li>
+          <li class="total"><span>Pay within 30 days</span><b>₱22,511,250</b></li>
         </ol>
       </div>
 
@@ -490,13 +534,13 @@
           <span class="seg s-bal" style="width:75%">75% balance</span>
         </div>
         <div class="legend"><i class="s-now"></i>5% now <i class="s-month"></i>20% monthly <i class="s-bal"></i>75% balance</div>
-        <p class="small muted" style="margin:10px 0 4px">Price after 5% discount: <b>₱20,622,600</b></p>
+        <p class="small muted" style="margin:10px 0 4px">Price after 5% discount: <b>₱28,894,250</b></p>
         <ol class="steps">
-          <li><span><em>Step 1</em> 5% spot payment, within 30 days<small>net of ₱150,000 reservation fee</small></span><b>₱881,130</b></li>
-          <li class="total"><span><em>Step 2</em> 20% spread over 48 months</span><b>₱85,928<small>per month</small></b></li>
-          <li><span><em>Step 3</em> 75% balance after 48 months<small>bank loan or lump sum</small></span><b>₱15,466,950</b></li>
+          <li><span><em>Step 1</em> 5% spot payment, within 30 days<small>net of ₱300,000 reservation fee</small></span><b>₱1,144,713</b></li>
+          <li class="total"><span><em>Step 2</em> 20% spread over 48 months</span><b>₱120,393<small>per month</small></b></li>
+          <li><span><em>Step 3</em> 75% balance after 48 months<small>bank loan or lump sum</small></span><b>₱21,670,688</b></li>
         </ol>
-        <p class="loan">If bank-financed: about <b>₱195,929/month</b> for 10 years or <b>₱156,876/month</b> for 15 years (indicative at 9%).</p>
+        <p class="loan">If bank-financed: about <b>₱274,515/month</b> for 10 years or <b>₱219,799/month</b> for 15 years (indicative at 9%).</p>
       </div>
 
       <!-- OPTION 3 -->
@@ -510,12 +554,12 @@
           <span class="seg s-bal" style="width:80%">80% balance</span>
         </div>
         <div class="legend"><i class="s-month"></i>20% monthly <i class="s-bal"></i>80% balance</div>
-        <p class="small muted" style="margin:10px 0 4px">Full list price, no discount: <b>₱21,708,000</b></p>
+        <p class="small muted" style="margin:10px 0 4px">Full list price, no discount: <b>₱30,415,000</b></p>
         <ol class="steps">
-          <li class="total"><span><em>Step 1</em> 20% downpayment over 48 months<small>net of ₱150,000 reservation fee</small></span><b>₱87,325<small>per month</small></b></li>
-          <li><span><em>Step 2</em> 80% balance after 48 months<small>bank loan or lump sum</small></span><b>₱17,366,400</b></li>
+          <li class="total"><span><em>Step 1</em> 20% downpayment over 48 months<small>net of ₱300,000 reservation fee</small></span><b>₱120,479<small>per month</small></b></li>
+          <li><span><em>Step 2</em> 80% balance after 48 months<small>bank loan or lump sum</small></span><b>₱24,332,000</b></li>
         </ol>
-        <p class="loan">If bank-financed: about <b>₱219,990/month</b> for 10 years or <b>₱176,142/month</b> for 15 years (indicative at 9%).</p>
+        <p class="loan">If bank-financed: about <b>₱308,227/month</b> for 10 years or <b>₱246,791/month</b> for 15 years (indicative at 9%).</p>
       </div>
     </div>
     <p class="small muted" style="margin-top:12px">Sample computation only, not an official quotation. Bank financing is subject to bank approval and prevailing rates. Terms valid until November 30, 2026. Figures differ per unit, floor and view.</p>
