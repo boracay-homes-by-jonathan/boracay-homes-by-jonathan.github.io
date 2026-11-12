@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Escana Boracay by Brittany | 1-Bedroom from ₱30.4M, Studios from ₱21.1M</title>
+<title>Escana Boracay by Brittany | Studios from ₱21.1M · 1-Bedroom from ₱30.4M</title>
 <meta name="description" content="Escana Boracay Tower 2, Station Zero. 1-bedroom units with balcony from ₱30.4M, studios from ₱21.1M. Get your payment computation from Jonathan Rebullo, Country Manager under Vistaland.">
-<meta property="og:title" content="Escana Boracay: 1-bedroom homes with balcony from ₱30.4M">
+<meta property="og:title" content="Escana Boracay by Brittany: studios from ₱21.1M, 1-bedroom from ₱30.4M">
 <meta property="og:description" content="Award-winning residences at Station Zero, Boracay. Only 31 of 85 units left. Get your payment computation.">
 <meta property="og:image" content="https://boracay-homes-by-jonathan.github.io/images/hero-front-view.jpg">
 <meta property="og:image:width" content="1600">
@@ -74,8 +74,6 @@
   @keyframes fill{from{width:0}}
   @media (prefers-reduced-motion: reduce){.sc-bar span{animation:none}}
   .hero .sub b.gold{color:var(--gold);font-weight:600}
-  .hero .also{margin:-12px 0 20px;font-size:14px}
-  .hero .also a{color:#cfd8d5;text-decoration:underline;text-underline-offset:3px;display:inline-flex;min-height:44px;align-items:center}
   .hero .ctas{display:flex;flex-direction:column;gap:10px}
   .hero-img{margin-top:34px;position:relative}
   .hero-img img{aspect-ratio:16/9;object-fit:cover}
@@ -300,9 +298,8 @@
       <div>
         <div class="award">🏆 Best Mixed-Use Development 2026</div>
         <div class="eyebrow">Tower 2 · Station Zero, Boracay</div>
-        <h1>Your 1-bedroom home in Boracay</h1>
-        <p class="sub">54.33 sqm with balcony · from <b class="gold">₱30.4M</b><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
-        <p class="also"><a href="#prices">Studios also available from ₱21.1M →</a></p>
+        <h1>Your home in Boracay</h1>
+        <p class="sub">Studios from <b class="gold">₱21.1M</b><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
 
         <!-- Scarcity bar: 85 units in Tower 2 (building specs), 31 available per the Nov 3, 2026 availability chart -->
         <div class="scarcity">
@@ -312,7 +309,7 @@
 
         <div class="ctas">
           <a class="btn" href="#inquire">Get my payment computation</a>
-          <a class="btn btn-outline" href="#featured">See the 1-bedroom</a>
+          <a class="btn btn-outline" href="#prices">See unit prices</a>
         </div>
       </div>
       <div class="hero-img">
@@ -331,21 +328,21 @@
       <figcaption><a href="images/layout-1br-deluxe.jpg" target="_blank" rel="noopener">View floor plan full size</a></figcaption>
     </figure>
     <div>
-      <div class="kicker">Featured unit</div>
+      <div class="kicker">Featured: 1 Bedroom</div>
       <h2>1 Bedroom Deluxe</h2>
       <p class="feat-price">from <b>₱30,415,000</b></p>
       <ul class="feat-list">
         <li>54.33 sqm with private balcony</li>
-        <li>Separate bedroom, ideal for a couple or a small family</li>
+        <li>Separate bedroom</li>
         <li>Bathtub, water heater and complete kitchen system</li>
         <li>Reservation fee ₱300,000</li>
       </ul>
       <div class="feat-left">
-        <span><b>8</b> 1 BR Deluxe units left</span>
-        <span><b>2</b> 1 BR Premium units left (60.33 – 61.70 sqm)</span>
+        <span>1 BR Deluxe: <b>8 units left</b></span>
+        <span>1 BR Premium (60.33 – 61.70 sqm): <b>only 2 left</b></span>
       </div>
       <p class="small muted" style="margin:6px 0 16px">Availability as of November 3, 2026.</p>
-      <a class="btn btn-dark" href="#inquire">Get my 1-bedroom computation</a>
+      <a class="btn btn-dark" href="#inquire" data-pick-unit="1 BR Deluxe (54.33 sqm)">Get my 1 BR computation</a>
     </div>
   </div>
 </section>
@@ -895,6 +892,14 @@ document.addEventListener("click", e => {
   setTimeout(() => {
     if (document.visibilityState === "visible") viberHelp.hidden = false;
   }, 1500);
+});
+
+/* Featured unit button: pre-select that unit in the inquiry form */
+document.querySelectorAll("[data-pick-unit]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const sel = document.getElementById("unit");
+    if (sel) sel.value = btn.getAttribute("data-pick-unit");
+  });
 });
 
 /* Hide time-limited promo text automatically once the promo period is over */
