@@ -215,6 +215,19 @@
   .pay-details summary::after{content:"▾";transition:transform .2s}
   .pay-details[open] summary::after{transform:rotate(180deg)}
   .pay-details[open] summary{background:var(--deep);color:#fff}
+  /* Gentle bounce so the breakdown button gets noticed; stops once opened */
+  .pay-details:not([open]) summary{animation:softBounce 2.6s ease-in-out infinite;box-shadow:0 0 0 0 rgba(201,164,92,.5)}
+  .pay-details:not([open]) summary::after{animation:arrowNudge 2.6s ease-in-out infinite}
+  @keyframes softBounce{
+    0%,55%,100%{transform:translateY(0);box-shadow:0 0 0 0 rgba(201,164,92,0)}
+    65%{transform:translateY(-5px);box-shadow:0 6px 16px -6px rgba(23,45,42,.35)}
+    75%{transform:translateY(0)}
+    82%{transform:translateY(-2px)}
+    90%{transform:translateY(0);box-shadow:0 0 0 6px rgba(201,164,92,.18)}
+  }
+  @keyframes arrowNudge{0%,55%,100%{transform:translateY(0)}65%{transform:translateY(3px)}75%{transform:translateY(0)}}
+  .pay-details summary:hover{animation-play-state:paused}
+  @media (prefers-reduced-motion: reduce){.pay-details summary,.pay-details summary::after{animation:none!important}}
 
   /* ===== Featured 1 bedroom ===== */
   .featured{background:var(--paper)}
