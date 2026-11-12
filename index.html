@@ -240,6 +240,10 @@
   form .btn:hover{background:var(--deep-2)}
   #form-status{font-size:15px;padding:14px;border-radius:8px;display:none}
   #form-status.ok{display:block;background:#EEF3E6;color:#2f5a1e}
+  .viber-help{position:fixed;left:12px;right:12px;bottom:76px;z-index:30;max-width:420px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.18);padding:16px;font-size:15px}
+  .viber-help[hidden]{display:none}
+  .vh-actions{display:flex;gap:8px;margin-top:10px}
+  .vh-actions .btn{flex:1;padding:12px 10px;font-size:14px}
   .direct-send{display:grid;gap:8px;margin-top:12px}
   @media(min-width:760px){.direct-send{grid-template-columns:repeat(3,1fr)}}
   #form-status.err{display:block;background:#FBECEA;color:#8a2a1c}
@@ -756,7 +760,7 @@
       <div class="contact">
         <a class="btn btn-dark" href="tel:+638985003509" data-contact="phone">Call 0898 5003 509</a>
         <a class="btn" href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn" href="viber://chat?number=%2B639431301792">Viber</a>
+        <a class="btn" href="viber://chat?number=%2B639431301792" data-viber>Viber</a>
         <a class="btn" href="https://m.me/Jtanrebullo" target="_blank" rel="noopener" data-contact="messenger">Messenger</a>
       </div>
       <p class="small muted" style="margin-top:10px">WhatsApp / Viber: 0943 130 1792 · Calls: 0898 5003 509</p>
@@ -818,6 +822,35 @@ document.querySelectorAll("[data-flip]").forEach(card => {
     if (e.target.closest("a")) return; // let "View full size" open normally
     setFlipped(!card.classList.contains("flipped"));
   });
+});
+
+/* Viber links only work when the Viber app is installed on the device.
+   If the app does not open, show the number with a copy button instead. */
+const viberHelp = document.createElement("div");
+viberHelp.className = "viber-help";
+viberHelp.hidden = true;
+viberHelp.setAttribute("role", "dialog");
+viberHelp.setAttribute("aria-label", "Viber contact");
+viberHelp.innerHTML = '<p><b>Viber didn\'t open?</b> Message me on Viber at <b>0943 130 1792</b>.</p>' +
+  '<div class="vh-actions"><button type="button" class="btn" data-copy-viber>Copy number</button>' +
+  '<button type="button" class="btn btn-dark" data-close-viber>Close</button></div>';
+document.body.appendChild(viberHelp);
+viberHelp.addEventListener("click", e => {
+  if (e.target.closest("[data-close-viber]")) viberHelp.hidden = true;
+  if (e.target.closest("[data-copy-viber]")) {
+    const btn = e.target.closest("[data-copy-viber]");
+    try {
+      navigator.clipboard.writeText("+639431301792").then(() => { btn.textContent = "Copied!"; }, () => { btn.textContent = "+63 943 130 1792"; });
+    } catch (err) { btn.textContent = "+63 943 130 1792"; }
+  }
+});
+document.addEventListener("click", e => {
+  const link = e.target.closest("[data-viber]");
+  if (!link) return;
+  // If the page is still visible after a moment, the Viber app most likely did not open
+  setTimeout(() => {
+    if (document.visibilityState === "visible") viberHelp.hidden = false;
+  }, 1500);
 });
 
 /* Hide time-limited promo text automatically once the promo period is over */
@@ -943,7 +976,7 @@ function showDirectSend(p, intro) {
     '<div class="direct-send">' +
       '<a class="btn" href="' + wa + '" target="_blank" rel="noopener">Send on WhatsApp</a>' +
       '<a class="btn btn-dark" href="' + CONFIG.MESSENGER_URL + '" target="_blank" rel="noopener">Send on Messenger</a>' +
-      '<a class="btn btn-dark" href="' + CONFIG.VIBER_URL + '">Send on Viber</a>' +
+      '<a class="btn btn-dark" href="' + CONFIG.VIBER_URL + '" data-viber>Send on Viber</a>' +
     '</div>' +
     '<p class="small" style="margin-top:8px">Your details are already typed in WhatsApp. For Messenger or Viber, they are copied, so just paste and send.</p>');
 }
