@@ -61,7 +61,7 @@
   .logo{font-family:var(--serif);font-size:24px;letter-spacing:.22em;text-decoration:none;color:#fff}
   .logo span{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.45em;color:var(--gold);margin-top:-3px}
   .nav a.mini{font-size:13px;font-weight:500;text-decoration:none;color:var(--gold);border:1px solid rgba(201,164,92,.5);padding:0 16px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px}
-  .hero .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;font-weight:600}
+  .hero .eyebrow{font-size:12px;letter-spacing:.22em;color:#b9c6c2;text-transform:uppercase;font-weight:600}
   .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,10.5vw,72px);line-height:1;margin:10px 0 6px}
   .hero h1 em{font-style:normal;color:var(--gold)}
   .hero .sub{color:#cfd8d5;font-size:16px;margin-bottom:24px}
@@ -70,10 +70,21 @@
   .sc-top b{font-size:16px;color:#fff}
   .sc-top span{font-size:11.5px;color:#9fb0ab}
   .sc-bar{height:10px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin:10px 0 6px}
-  .sc-bar span{display:block;height:100%;background:linear-gradient(90deg,#b8914a,var(--gold));border-radius:999px;animation:fill 1.4s ease-out}
+  .sc-bar span{display:block;height:100%;background:linear-gradient(90deg,#9c7d43,#c9a45c);border-radius:999px;animation:fill 1.4s ease-out}
   @keyframes fill{from{width:0}}
   @media (prefers-reduced-motion: reduce){.sc-bar span{animation:none}}
   .hero .sub b.gold{color:var(--gold);font-weight:600}
+  .studio-link{color:inherit;text-decoration:underline;text-decoration-color:rgba(201,164,92,.6);text-underline-offset:4px}
+  #studios{scroll-margin-top:16px}
+  #studios:target .front{box-shadow:0 0 0 3px var(--gold)}
+  /* Mobile: the sticky bar already has "Get computation", so hide the duplicate in the top nav */
+  @media(max-width:859px){.nav a.mini{display:none}}
+  /* Mobile: show the building photo behind the hero text instead of a long dark block */
+  @media(max-width:859px){
+    .hero{background:linear-gradient(180deg,rgba(23,45,42,.62) 0%,rgba(23,45,42,.80) 38%,#172D2A 62%),url("images/hero-front-view.jpg") center top/cover no-repeat,#172D2A}
+    .hero-img{display:none}
+    .hero{padding-bottom:40px}
+  }
   .hero .ctas{display:flex;flex-direction:column;gap:10px}
   .hero-img{margin-top:34px;position:relative}
   .hero-img img{aspect-ratio:16/9;object-fit:cover}
@@ -173,7 +184,7 @@
 
 
   /* ===== Award badge, designer, Why Boracay ===== */
-  .award{display:inline-block;font-size:12.5px;font-weight:600;color:var(--deep);background:var(--gold);padding:7px 12px;border-radius:999px;margin-bottom:14px;line-height:1.35}
+  .award{display:inline-block;font-size:12.5px;font-weight:500;color:var(--gold);background:rgba(201,164,92,.10);border:1px solid rgba(201,164,92,.45);padding:7px 12px;border-radius:999px;margin-bottom:16px;line-height:1.35}
   .designer{margin-top:14px;padding:14px;background:var(--cream);border:1px solid var(--line);border-radius:var(--r);font-size:14.5px}
   .boracay{background:var(--paper)}
   .band{margin-bottom:22px}
@@ -299,7 +310,7 @@
         <div class="award">🏆 Best Mixed-Use Development 2026</div>
         <div class="eyebrow">Tower 2 · Station Zero, Boracay</div>
         <h1>Your home in Boracay</h1>
-        <p class="sub">Studios from <b class="gold">₱21.1M</b><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
+        <p class="sub"><a class="studio-link" href="#studios">Studios from <b class="gold">₱21.1M</b></a><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
 
         <!-- Scarcity bar: 85 units in Tower 2 (building specs), 31 available per the Nov 3, 2026 availability chart -->
         <div class="scarcity">
@@ -398,7 +409,7 @@
         </div>
       </div>
 
-      <div class="flip" data-flip data-name="Studio Deluxe">
+      <div class="flip" data-flip data-name="Studio Deluxe" id="studios">
         <div class="flip-inner">
           <div class="face unit front">
         <div class="unit-head">
