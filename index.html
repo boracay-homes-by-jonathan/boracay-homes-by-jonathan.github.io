@@ -65,19 +65,13 @@
   .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,10.5vw,72px);line-height:1;margin:10px 0 6px}
   .hero h1 em{font-style:normal;color:var(--gold)}
   .hero .sub{color:#cfd8d5;font-size:16px;margin-bottom:24px}
-  .scarcity{background:rgba(255,255,255,.06);border:1px solid rgba(201,164,92,.45);border-radius:var(--r);padding:14px;margin:0 0 16px}
-  .sc-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .sc-top b{font-size:16px;color:#fff}
-  .sc-top span{font-size:11.5px;color:#9fb0ab}
-  .sc-bar{height:10px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin:10px 0 6px}
-  .sc-bar span{display:block;height:100%;background:linear-gradient(90deg,#9c7d43,#c9a45c);border-radius:999px;animation:fill 1.4s ease-out}
-  @keyframes fill{from{width:0}}
-  @media (prefers-reduced-motion: reduce){.sc-bar span{animation:none}}
   .hero .sub b.gold{color:var(--gold);font-weight:600}
+  .remaining{font-size:14px;color:#dfe7e4;letter-spacing:.02em;margin:0 0 22px;padding-left:12px;border-left:2px solid var(--gold)}
+  .remaining span{color:#9fb0ab}
   .studio-link{color:inherit;text-decoration:underline;text-decoration-color:rgba(201,164,92,.6);text-underline-offset:4px}
   #studios{scroll-margin-top:16px}
   #studios:target .front{box-shadow:0 0 0 3px var(--gold)}
-  /* Mobile: the sticky bar already has "Get computation", so hide the duplicate in the top nav */
+  /* Mobile: the sticky bar already has the presentation button, so hide the duplicate in the top nav */
   @media(max-width:859px){.nav a.mini{display:none}}
   /* Mobile: show the building photo behind the hero text instead of a long dark block */
   @media(max-width:859px){
@@ -209,6 +203,19 @@
   .promo-ended{background:#FFF6DD;color:#6b5200;border:1px solid #f0dca0;border-radius:var(--r);padding:12px 14px;font-size:14px;margin-bottom:16px}
   .promo-ended[hidden]{display:none}
 
+  /* ===== Payment summary + collapsible breakdown ===== */
+  .pay-summary{list-style:none;display:grid;gap:8px;margin-top:14px}
+  @media(min-width:860px){.pay-summary{grid-template-columns:repeat(3,1fr)}}
+  .pay-summary li{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+  .pay-summary b{font-family:var(--serif);font-size:20px;color:var(--deep);font-weight:600}
+  .pay-summary span{font-size:14px;color:var(--muted)}
+  .pay-details{margin-top:14px}
+  .pay-details summary{cursor:pointer;list-style:none;min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--deep);border-radius:999px;font-weight:600;color:var(--deep);background:transparent}
+  .pay-details summary::-webkit-details-marker{display:none}
+  .pay-details summary::after{content:"▾";transition:transform .2s}
+  .pay-details[open] summary::after{transform:rotate(180deg)}
+  .pay-details[open] summary{background:var(--deep);color:#fff}
+
   /* ===== Featured 1 bedroom ===== */
   .featured{background:var(--paper)}
   .feat-grid{display:grid;gap:22px;align-items:center}
@@ -303,23 +310,20 @@
   <div class="wrap">
     <nav class="nav">
       <a class="logo" href="#top">ESCANA<span>BORACAY</span></a>
-      <a class="mini" href="#inquire">Get computation</a>
+      <a class="mini" href="#inquire">Private presentation</a>
     </nav>
     <div class="hero-grid">
       <div>
         <div class="award">🏆 Best Mixed-Use Development 2026</div>
         <div class="eyebrow">Tower 2 · Station Zero, Boracay</div>
         <h1>Your home in Boracay</h1>
-        <p class="sub"><a class="studio-link" href="#studios">Studios from <b class="gold">₱21.1M</b></a><span class="promo-only"> · <b class="gold">25% off</b> on spot cash</span></p>
+        <p class="sub"><a class="studio-link" href="#studios">Residences from <b class="gold">₱21.1M</b></a> · beside Shangri-La and Mövenpick</p>
 
-        <!-- Scarcity bar: 85 units in Tower 2 (building specs), 31 available per the Nov 3, 2026 availability chart -->
-        <div class="scarcity">
-          <div class="sc-top"><b>Only 31 of 85 units left</b><span>as of Nov 3</span></div>
-          <div class="sc-bar" role="img" aria-label="54 of 85 units already taken"><span style="width:64%"></span></div>
-        </div>
+        <!-- 31 available (Nov 3, 2026 availability chart) out of 85 units in Tower 2 -->
+        <p class="remaining">31 of 85 residences remaining <span>· as of Nov 3</span></p>
 
         <div class="ctas">
-          <a class="btn" href="#inquire">Get my payment computation</a>
+          <a class="btn" href="#inquire">Request a private presentation</a>
           <a class="btn btn-outline" href="#prices">See unit prices</a>
         </div>
       </div>
@@ -353,7 +357,7 @@
         <span>1 BR Premium (60.33 – 61.70 sqm): <b>only 2 left</b></span>
       </div>
       <p class="small muted" style="margin:6px 0 16px">Availability as of November 3, 2026.</p>
-      <a class="btn btn-dark" href="#inquire" data-pick-unit="1 BR Deluxe (54.33 sqm)">Get my 1 BR computation</a>
+      <a class="btn btn-dark" href="#inquire" data-pick-unit="1 BR Deluxe (54.33 sqm)">Request a 1 BR presentation</a>
     </div>
   </div>
 </section>
@@ -491,7 +495,15 @@
     <div class="promo-ended" hidden>The 25% spot cash promo ended on November 30, 2026. Message me for the latest payment terms.</div>
     <div class="kicker">Payment options</div>
     <h2>Three ways to pay</h2>
-    <p class="muted">Example below: <strong>1 BR Deluxe, Unit 2F-A</strong> (available), list price <strong>₱30,415,000</strong>. Every option starts with a ₱300,000 reservation fee, which is already deducted from the amounts shown.</p>
+    <ul class="pay-summary">
+      <li><b>Spot cash</b><span class="promo-only">25% discount, pay in full within 30 days</span></li>
+      <li><b>5% spot, 20% over 48 months</b><span class="promo-only">5% discount, 75% balance via bank or cash</span></li>
+      <li><b>20% down over 48 months</b><span>Most flexible, 80% balance via bank or cash</span></li>
+    </ul>
+
+    <details class="pay-details">
+      <summary>See the full payment breakdown</summary>
+    <p class="muted" style="margin-top:14px">Example below: <strong>1 BR Deluxe, Unit 2F-A</strong> (available), list price <strong>₱30,415,000</strong>. Every option starts with a ₱300,000 reservation fee, which is already deducted from the amounts shown.</p>
 
     <!-- Quick comparison: columns = options, rows = payment stages (1 BR Deluxe 2F-A) -->
     <div class="cmp">
@@ -571,6 +583,7 @@
       </div>
     </div>
     <p class="small muted" style="margin-top:12px">Sample computation only, not an official quotation. Bank financing is subject to bank approval and prevailing rates. Terms valid until November 30, 2026. Figures differ per unit, floor and view.</p>
+    </details>
     <p style="margin-top:18px"><a class="btn btn-dark" href="#inquire">Get the computation for my unit</a></p>
   </div>
 </section>
@@ -673,13 +686,13 @@
 <!-- ===================== INQUIRY FORM ===================== -->
 <section class="inquire" id="inquire">
   <div class="wrap">
-    <div class="kicker">Free, no commitment</div>
-    <h2>Get the computation for your unit</h2>
-    <p class="muted">Tell me which unit you like and I'll send:</p>
+    <div class="kicker">By appointment</div>
+    <h2>Request a private presentation</h2>
+    <p class="muted">Tell me what you're looking for and I'll prepare:</p>
     <ul class="perks">
-      <li>Current price list and available units</li>
-      <li>Your step-by-step payment computation</li>
-      <li>A private Zoom presentation on your time zone, or a site viewing</li>
+      <li>A private presentation on Zoom at your time zone, or a site viewing</li>
+      <li>The current price list and available residences</li>
+      <li>A payment computation for the unit you like</li>
     </ul>
     <form id="lead-form" novalidate>
       <div>
@@ -789,7 +802,7 @@
       </label>
 
       <div class="full">
-        <button class="btn" type="submit" id="submit-btn" style="width:100%">Send me my computation</button>
+        <button class="btn" type="submit" id="submit-btn" style="width:100%">Request my private presentation</button>
       </div>
       <div id="form-status" class="full" role="status" aria-live="polite"></div>
     </form>
@@ -833,7 +846,7 @@
 <nav class="actionbar" aria-label="Quick contact">
   <a href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
   <a href="https://m.me/Jtanrebullo" target="_blank" rel="noopener" data-contact="messenger">Messenger</a>
-  <a class="primary" href="#inquire">Get computation</a>
+  <a class="primary" href="#inquire">Book presentation</a>
 </nav>
 
 <script>
@@ -917,7 +930,7 @@ document.querySelectorAll("[data-pick-unit]").forEach(btn => {
 (function () {
   const PROMO_END = new Date("2026-11-30T23:59:59+08:00");
   if (new Date() > PROMO_END) {
-    document.querySelectorAll(".promo-only").forEach(el => el.remove());
+    document.querySelectorAll(".promo-only").forEach(el => { el.textContent = "Ask me for the latest terms"; el.classList.remove("promo-only"); });
     document.querySelectorAll(".promo-ended").forEach(el => el.hidden = false);
   }
 })();
@@ -1095,7 +1108,7 @@ document.getElementById("lead-form").addEventListener("submit", async (e) => {
   }
 
   btn.disabled = false;
-  btn.textContent = "Send me my computation";
+  btn.textContent = "Request my private presentation";
 
   if (delivered) {
     form.reset();
