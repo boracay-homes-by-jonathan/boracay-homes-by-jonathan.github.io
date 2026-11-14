@@ -75,10 +75,8 @@
   /* Floating booking button: fixed to the top right so it never scrolls away */
   .nav a.book-float{position:fixed;top:18px;right:24px;z-index:50;background:var(--deep);box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s}
   .nav a.book-float:hover,.nav a.book-float.solid{background:var(--gold);color:var(--deep);border-color:var(--gold)}
-  /* Phones: smaller floating pill at the top right, follows the scroll */
-  @media(max-width:859px){
-    .nav a.book-float{top:12px;right:12px;min-height:40px;padding:0 14px;font-size:13px;font-weight:600}
-  }
+  /* Phones use the bottom bar instead of the floating pill */
+  @media(max-width:859px){.nav a.mini{display:none}}
   #book{scroll-margin-top:20px}
   /* Mobile: show the building photo behind the hero text instead of a long dark block */
   @media(max-width:859px){
@@ -346,6 +344,10 @@
   .actionbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:1fr 1fr 1.4fr;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.08)}
   .actionbar a{display:flex;align-items:center;justify-content:center;padding:15px 6px;font-size:14px;font-weight:600;text-decoration:none;color:var(--deep)}
   .actionbar a.primary{background:var(--gold);color:var(--deep)}
+  .actionbar .pulse-label{display:inline-block}
+  .actionbar a.primary.pulse .pulse-label{animation:zoomPulse .7s ease-in-out}
+  @keyframes zoomPulse{0%{transform:scale(1)}35%{transform:scale(1.14)}70%{transform:scale(.97)}100%{transform:scale(1)}}
+  @media (prefers-reduced-motion: reduce){.actionbar a.primary.pulse .pulse-label{animation:none}}
   @media(min-width:860px){.actionbar{display:none}body{padding-bottom:0}}
 </style>
 </head>
@@ -943,7 +945,7 @@
 <nav class="actionbar" aria-label="Quick contact">
   <a href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
   <a href="https://m.me/Jtanrebullo" target="_blank" rel="noopener" data-contact="messenger">Messenger</a>
-  <a class="primary" href="#book">Book appointment</a>
+  <a class="primary" href="#book"><span class="pulse-label">Book appointment</span></a>
 </nav>
 
 <script>
@@ -1066,6 +1068,22 @@ document.addEventListener("click", e => {
     });
   }, { rootMargin: "200px 0px" });
   vids.forEach(v => io.observe(v));
+})();
+
+/* Bottom bar: "Book appointment" zooms in and out when the visitor scrolls
+   (at most once every 1.2 seconds, so it draws the eye without being annoying) */
+(function () {
+  const btn = document.querySelector(".actionbar a.primary");
+  if (!btn) return;
+  let last = 0;
+  window.addEventListener("scroll", () => {
+    const now = Date.now();
+    if (now - last < 1200) return;
+    last = now;
+    btn.classList.remove("pulse");
+    void btn.offsetWidth; // restart the animation
+    btn.classList.add("pulse");
+  }, { passive: true });
 })();
 
 /* Hide time-limited promo text automatically once the promo period is over */
