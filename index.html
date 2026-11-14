@@ -289,6 +289,7 @@
   .viber-help[hidden]{display:none}
   .vh-actions{display:flex;gap:8px;margin-top:10px}
   .vh-actions .btn{flex:1;padding:12px 10px;font-size:14px}
+  .copy-toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:40;background:var(--deep);color:#fff;padding:12px 16px;border-radius:999px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90vw;text-align:center}
   .direct-send{display:grid;gap:8px;margin-top:12px}
   @media(min-width:760px){.direct-send{grid-template-columns:repeat(3,1fr)}}
   #form-status.err{display:block;background:#FBECEA;color:#8a2a1c}
@@ -1053,6 +1054,21 @@ function inquiryText(p) {
   ].filter(Boolean).join("\n");
 }
 
+let lastInquiryText = "";
+
+/* Copy the inquiry again on the button tap itself (a fresh tap is the most reliable moment
+   for phones to allow copying), then show a short reminder to paste it in the chat. */
+document.addEventListener("click", e => {
+  const btn = e.target.closest("[data-copy-inquiry]");
+  if (!btn || !lastInquiryText) return;
+  try { navigator.clipboard && navigator.clipboard.writeText(lastInquiryText).catch(() => {}); } catch (err) {}
+  const toast = document.createElement("div");
+  toast.className = "copy-toast";
+  toast.textContent = "Details copied. Paste them in the chat and send.";
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+});
+
 function showDirectSend(p, intro) {
   const text = inquiryText(p);
   try { navigator.clipboard && navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
@@ -1061,10 +1077,11 @@ function showDirectSend(p, intro) {
     intro +
     '<div class="direct-send">' +
       '<a class="btn" href="' + wa + '" target="_blank" rel="noopener">Send on WhatsApp</a>' +
-      '<a class="btn btn-dark" href="' + CONFIG.MESSENGER_URL + '" target="_blank" rel="noopener">Send on Messenger</a>' +
-      '<a class="btn btn-dark" href="' + CONFIG.VIBER_URL + '" data-viber>Send on Viber</a>' +
+      '<a class="btn btn-dark" href="' + CONFIG.MESSENGER_URL + '" target="_blank" rel="noopener" data-copy-inquiry>Send on Messenger</a>' +
+      '<a class="btn btn-dark" href="' + CONFIG.VIBER_URL + '" data-viber data-copy-inquiry>Send on Viber</a>' +
     '</div>' +
-    '<p class="small" style="margin-top:8px">Your details are already typed in WhatsApp. For Messenger or Viber, they are copied, so just paste and send.</p>');
+    '<p class="small" style="margin-top:8px"><b>WhatsApp:</b> your details are already typed in, just tap send.<br><b>Messenger / Viber:</b> your details are copied when you tap the button. In the chat, press and hold the message box, tap <b>Paste</b>, then send.</p>');
+  lastInquiryText = text;
 }
 
 document.getElementById("lead-form").addEventListener("submit", async (e) => {
