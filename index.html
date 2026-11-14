@@ -296,6 +296,11 @@
   .vh-actions{display:flex;gap:8px;margin-top:10px}
   .vh-actions .btn{flex:1;padding:12px 10px;font-size:14px}
   .copy-toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:40;background:var(--deep);color:#fff;padding:12px 16px;border-radius:999px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90vw;text-align:center}
+  .model-video{margin-top:28px}
+  .model-video video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r);background:#ddd}
+  .model-video figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+  .model-video b{color:var(--deep)}
+  .booth-video{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;margin-bottom:14px;background:#ddd}
   .book{background:var(--paper)}
   .book-grid{display:grid;gap:14px;margin-top:22px}
   @media(min-width:760px){.book-grid{grid-template-columns:1fr 1fr}}
@@ -648,6 +653,14 @@
       </div>
     </div>
   </div>
+  <div class="wrap">
+    <figure class="model-video">
+      <video data-lazy-video muted loop playsinline preload="none" poster="images/scale-model-poster.jpg" width="1280" height="720" aria-label="Scale model of Escana Boracay Tower 2">
+        <source data-src="videos/scale-model.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>The Escana scale model</b> · actual video of the scale model on display at the Escana booth, Evia, Cavite</figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- ===================== WHY BORACAY ===================== -->
@@ -724,6 +737,7 @@
     <p class="muted">Choose the option that fits where you are now. You'll get a confirmation by email right after booking.</p>
     <div class="book-grid">
       <div class="book-card">
+        <img class="booth-video" src="images/lobby-1.jpg" alt="Escana Boracay lobby, artist's perspective" loading="lazy" width="740" height="381">
         <div class="book-label">Abroad or OFW</div>
         <h3>Online presentation</h3>
         <ul>
@@ -734,17 +748,20 @@
         <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book an online presentation</a>
       </div>
       <div class="book-card">
+        <video class="booth-video" data-lazy-video muted loop playsinline preload="none" poster="images/booth-poster.jpg" width="720" height="1280" aria-label="The Escana booth at Evia, Cavite">
+          <source data-src="videos/booth.mp4" type="video/mp4">
+        </video>
         <div class="book-label">In the Philippines</div>
         <h3>Meet in person</h3>
         <ul>
-          <li>Face-to-face presentation with Jonathan</li>
+          <li>Visit the Escana booth at Evia, Cavite and see the scale model</li>
           <li>Go through floor plans, units and payment options</li>
           <li>Get your payment computation on the spot</li>
         </ul>
         <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal data-meet="in-person">Book an in-person meeting</a>
       </div>
     </div>
-    <p class="small muted book-foot">Booking opens Jonathan's calendar in a new tab. For an in-person meeting, I'll message you to confirm the place. Prefer to message first? <a href="#inquire">Send a request instead</a> or WhatsApp 0943 130 1792.</p>
+    <p class="small muted book-foot">Booking opens Jonathan's calendar in a new tab. For an in-person meeting, I'll message you to confirm the schedule and meeting point. Prefer to message first? <a href="#inquire">Send a request instead</a> or WhatsApp 0943 130 1792.</p>
   </div>
 </section>
 
@@ -1011,6 +1028,30 @@ document.addEventListener("click", e => {
   const hero = document.querySelector(".hero");
   if (!btn || !hero || !("IntersectionObserver" in window)) return;
   new IntersectionObserver(([entry]) => btn.classList.toggle("solid", !entry.isIntersecting)).observe(hero);
+})();
+
+/* Videos load only when they come into view, play muted while visible, and pause when off screen */
+(function () {
+  const vids = document.querySelectorAll("[data-lazy-video]");
+  if (!vids.length) return;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const load = v => {
+    const src = v.querySelector("source[data-src]");
+    if (src && !src.src) { src.src = src.dataset.src; v.load(); }
+  };
+  if (!("IntersectionObserver" in window)) { vids.forEach(v => { load(v); v.controls = true; }); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        load(v);
+        if (reduce) { v.controls = true; return; }
+        const p = v.play(); if (p && p.catch) p.catch(() => { v.controls = true; });
+      } else if (!v.paused) {
+        v.pause();
+      }
+    });
+  }, { rootMargin: "200px 0px" });
+  vids.forEach(v => io.observe(v));
 })();
 
 /* Hide time-limited promo text automatically once the promo period is over */
