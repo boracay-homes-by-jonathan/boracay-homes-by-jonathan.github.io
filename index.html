@@ -72,11 +72,12 @@
   #studios{scroll-margin-top:16px}
   #studios:target .front{box-shadow:0 0 0 3px var(--gold)}
   /* Mobile: the sticky bar already has the presentation button, so hide the duplicate in the top nav */
-  @media(max-width:859px){.nav a.mini{display:none}}
   /* Floating booking button: fixed to the top right so it never scrolls away */
-  @media(min-width:860px){
-    .nav a.book-float{position:fixed;top:18px;right:24px;z-index:50;background:var(--deep);box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s}
-    .nav a.book-float:hover,.nav a.book-float.solid{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+  .nav a.book-float{position:fixed;top:18px;right:24px;z-index:50;background:var(--deep);box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s}
+  .nav a.book-float:hover,.nav a.book-float.solid{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+  /* Phones: smaller floating pill at the top right, follows the scroll */
+  @media(max-width:859px){
+    .nav a.book-float{top:12px;right:12px;min-height:40px;padding:0 14px;font-size:13px;font-weight:600}
   }
   #book{scroll-margin-top:20px}
   /* Mobile: show the building photo behind the hero text instead of a long dark block */
