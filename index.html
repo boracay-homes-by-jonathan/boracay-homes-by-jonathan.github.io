@@ -88,12 +88,15 @@
   .hero .ctas{display:flex;flex-direction:column;gap:10px}
   .hero-img{margin-top:34px;position:relative}
   .hero-img img{aspect-ratio:16/9;object-fit:cover}
-  .hero-img small{position:absolute;right:10px;bottom:6px;font-size:11px;color:#fff;opacity:.8}
+  .hero-img small{position:absolute;left:12px;bottom:8px;font-size:11px;color:#fff;opacity:.8}
   @media(min-width:860px){
-    .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
-    .hero .ctas{flex-direction:row}
+    .hero > .wrap{max-width:1320px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:48px;align-items:center}
+    .hero .ctas{flex-direction:row;flex-wrap:wrap}
+    .hero .ctas .btn{white-space:nowrap}
     .hero-img{margin-top:0}
-    .hero-img img{border-radius:var(--r);aspect-ratio:4/3}
+    /* Show the full 16:9 perspective (no cropping of the towers or the logo) */
+    .hero-img img{border-radius:var(--r);aspect-ratio:16/9;object-fit:cover;box-shadow:0 20px 50px rgba(0,0,0,.35)}
     .hero{padding-bottom:56px}
   }
 
