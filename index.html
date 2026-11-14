@@ -73,6 +73,12 @@
   #studios:target .front{box-shadow:0 0 0 3px var(--gold)}
   /* Mobile: the sticky bar already has the presentation button, so hide the duplicate in the top nav */
   @media(max-width:859px){.nav a.mini{display:none}}
+  /* Floating booking button: fixed to the top right so it never scrolls away */
+  @media(min-width:860px){
+    .nav a.book-float{position:fixed;top:18px;right:24px;z-index:50;background:var(--deep);box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,color .2s}
+    .nav a.book-float:hover,.nav a.book-float.solid{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+  }
+  #book{scroll-margin-top:20px}
   /* Mobile: show the building photo behind the hero text instead of a long dark block */
   @media(max-width:859px){
     .hero{background:linear-gradient(180deg,rgba(23,45,42,.62) 0%,rgba(23,45,42,.80) 38%,#172D2A 62%),url("images/hero-front-view.jpg") center top/cover no-repeat,#172D2A}
@@ -290,10 +296,18 @@
   .vh-actions{display:flex;gap:8px;margin-top:10px}
   .vh-actions .btn{flex:1;padding:12px 10px;font-size:14px}
   .copy-toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:40;background:var(--deep);color:#fff;padding:12px 16px;border-radius:999px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90vw;text-align:center}
-  .book-now{margin-top:18px;background:rgba(255,255,255,.06);border:1px solid rgba(201,164,92,.45);border-radius:var(--r);padding:16px;display:grid;gap:12px;align-items:center}
-  .book-now b{display:block;color:#fff;font-size:16px}
-  .book-now span{font-size:14px;color:#cfd8d5}
-  @media(min-width:760px){.book-now{grid-template-columns:1fr auto}}
+  .book{background:var(--paper)}
+  .book-grid{display:grid;gap:14px;margin-top:22px}
+  @media(min-width:760px){.book-grid{grid-template-columns:1fr 1fr}}
+  .book-card{background:var(--cream);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column}
+  .book-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink);font-weight:600}
+  .book-card h3{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--deep);margin:6px 0 10px}
+  .book-card ul{list-style:none;display:grid;gap:6px;font-size:14.5px;margin-bottom:18px}
+  .book-card li::before{content:"✓";color:var(--gold-ink);font-weight:600;margin-right:8px}
+  .book-card .btn{margin-top:auto;background:var(--deep);color:#fff;width:100%}
+  .book-card .btn:hover{background:var(--deep-2)}
+  .book-foot{margin-top:12px}
+  .book-foot a{color:var(--deep);font-weight:600}
   .direct-send{display:grid;gap:8px;margin-top:12px}
   @media(min-width:760px){.direct-send{grid-template-columns:repeat(3,1fr)}}
   #form-status.err{display:block;background:#FBECEA;color:#8a2a1c}
@@ -328,7 +342,7 @@
   <div class="wrap">
     <nav class="nav">
       <a class="logo" href="#top">ESCANA<span>BORACAY</span></a>
-      <a class="mini" href="#inquire">Private presentation</a>
+      <a class="mini book-float" href="#book">Book appointment</a>
     </nav>
     <div class="hero-grid">
       <div>
@@ -341,7 +355,7 @@
         <p class="remaining">31 of 85 residences remaining <span>· as of Nov 3</span></p>
 
         <div class="ctas">
-          <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book a private presentation</a>
+          <a class="btn" href="#book">Book an appointment</a>
           <a class="btn btn-outline" href="#prices">See unit prices</a>
         </div>
       </div>
@@ -701,19 +715,45 @@
   </div>
 </section>
 
+<!-- ===================== BOOK AN APPOINTMENT ===================== -->
+<!-- Both options open the same Cal.com booking page; the card only helps the visitor choose the right type of meeting -->
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="kicker">Book an appointment</div>
+    <h2>Pick a time that works for you</h2>
+    <p class="muted">Choose the option that fits where you are now. You'll get a confirmation by email right after booking.</p>
+    <div class="book-grid">
+      <div class="book-card">
+        <div class="book-label">Abroad or OFW</div>
+        <h3>Online presentation</h3>
+        <ul>
+          <li>One-on-one via Google Meet</li>
+          <li>Walk-through of units, floor plans and payment terms</li>
+          <li>Pick a time that suits your time zone</li>
+        </ul>
+        <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book an online presentation</a>
+      </div>
+      <div class="book-card">
+        <div class="book-label">In the Philippines</div>
+        <h3>Meet in person</h3>
+        <ul>
+          <li>Face-to-face presentation with Jonathan</li>
+          <li>Go through floor plans, units and payment options</li>
+          <li>Get your payment computation on the spot</li>
+        </ul>
+        <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal data-meet="in-person">Book an in-person meeting</a>
+      </div>
+    </div>
+    <p class="small muted book-foot">Booking opens Jonathan's calendar in a new tab. For an in-person meeting, I'll message you to confirm the place. Prefer to message first? <a href="#inquire">Send a request instead</a> or WhatsApp 0943 130 1792.</p>
+  </div>
+</section>
+
 <!-- ===================== INQUIRY FORM ===================== -->
 <section class="inquire" id="inquire">
   <div class="wrap">
-    <div class="kicker">By appointment</div>
-    <h2>Request a private presentation</h2>
-    <div class="book-now">
-      <div>
-        <b>Prefer to pick a time now?</b>
-        <span>45-minute private presentation on Google Meet. Choose a slot that fits your time zone.</span>
-      </div>
-      <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book on my calendar</a>
-    </div>
-    <p class="muted" style="margin-top:18px">Or leave your details below and I'll prepare:</p>
+    <div class="kicker">Prefer to message first?</div>
+    <h2>Send a request</h2>
+    <p class="muted">Leave your details and I'll message you with:</p>
     <ul class="perks">
       <li>A private presentation on Google Meet at your time zone, or a site viewing</li>
       <li>The current price list and available residences</li>
@@ -848,7 +888,7 @@
       </div>
       <p class="muted">I help OFWs and Filipinos worldwide own Vistaland homes. I'll explain the units, payment terms and reservation process clearly, so you can decide with complete numbers.</p>
       <div class="contact">
-        <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book a presentation</a>
+        <a class="btn" href="#book">Book an appointment</a>
         <a class="btn btn-dark" href="tel:+638985003509" data-contact="phone">Call 0898 5003 509</a>
         <a class="btn" href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn" href="viber://chat?number=%2B639431301792" data-viber>Viber</a>
@@ -872,7 +912,7 @@
 <nav class="actionbar" aria-label="Quick contact">
   <a href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
   <a href="https://m.me/Jtanrebullo" target="_blank" rel="noopener" data-contact="messenger">Messenger</a>
-  <a class="primary" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book presentation</a>
+  <a class="primary" href="#book">Book appointment</a>
 </nav>
 
 <script>
@@ -964,6 +1004,14 @@ document.addEventListener("click", e => {
   if (email) url.searchParams.set("email", email.trim());
   link.href = url.toString();
 });
+
+/* Floating "Book appointment" turns solid once the hero is out of view */
+(function () {
+  const btn = document.querySelector(".book-float");
+  const hero = document.querySelector(".hero");
+  if (!btn || !hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(([entry]) => btn.classList.toggle("solid", !entry.isIntersecting)).observe(hero);
+})();
 
 /* Hide time-limited promo text automatically once the promo period is over */
 (function () {
