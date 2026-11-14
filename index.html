@@ -290,6 +290,10 @@
   .vh-actions{display:flex;gap:8px;margin-top:10px}
   .vh-actions .btn{flex:1;padding:12px 10px;font-size:14px}
   .copy-toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:40;background:var(--deep);color:#fff;padding:12px 16px;border-radius:999px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90vw;text-align:center}
+  .book-now{margin-top:18px;background:rgba(255,255,255,.06);border:1px solid rgba(201,164,92,.45);border-radius:var(--r);padding:16px;display:grid;gap:12px;align-items:center}
+  .book-now b{display:block;color:#fff;font-size:16px}
+  .book-now span{font-size:14px;color:#cfd8d5}
+  @media(min-width:760px){.book-now{grid-template-columns:1fr auto}}
   .direct-send{display:grid;gap:8px;margin-top:12px}
   @media(min-width:760px){.direct-send{grid-template-columns:repeat(3,1fr)}}
   #form-status.err{display:block;background:#FBECEA;color:#8a2a1c}
@@ -337,7 +341,7 @@
         <p class="remaining">31 of 85 residences remaining <span>· as of Nov 3</span></p>
 
         <div class="ctas">
-          <a class="btn" href="#inquire">Request a private presentation</a>
+          <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book a private presentation</a>
           <a class="btn btn-outline" href="#prices">See unit prices</a>
         </div>
       </div>
@@ -702,9 +706,16 @@
   <div class="wrap">
     <div class="kicker">By appointment</div>
     <h2>Request a private presentation</h2>
-    <p class="muted">Tell me what you're looking for and I'll prepare:</p>
+    <div class="book-now">
+      <div>
+        <b>Prefer to pick a time now?</b>
+        <span>45-minute private presentation on Google Meet. Choose a slot that fits your time zone.</span>
+      </div>
+      <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book on my calendar</a>
+    </div>
+    <p class="muted" style="margin-top:18px">Or leave your details below and I'll prepare:</p>
     <ul class="perks">
-      <li>A private presentation on Zoom at your time zone, or a site viewing</li>
+      <li>A private presentation on Google Meet at your time zone, or a site viewing</li>
       <li>The current price list and available residences</li>
       <li>A payment computation for the unit you like</li>
     </ul>
@@ -837,6 +848,7 @@
       </div>
       <p class="muted">I help OFWs and Filipinos worldwide own Vistaland homes. I'll explain the units, payment terms and reservation process clearly, so you can decide with complete numbers.</p>
       <div class="contact">
+        <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book a presentation</a>
         <a class="btn btn-dark" href="tel:+638985003509" data-contact="phone">Call 0898 5003 509</a>
         <a class="btn" href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn" href="viber://chat?number=%2B639431301792" data-viber>Viber</a>
@@ -860,7 +872,7 @@
 <nav class="actionbar" aria-label="Quick contact">
   <a href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
   <a href="https://m.me/Jtanrebullo" target="_blank" rel="noopener" data-contact="messenger">Messenger</a>
-  <a class="primary" href="#inquire">Book presentation</a>
+  <a class="primary" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book presentation</a>
 </nav>
 
 <script>
@@ -938,6 +950,19 @@ document.querySelectorAll("[data-pick-unit]").forEach(btn => {
     const sel = document.getElementById("unit");
     if (sel) sel.value = btn.getAttribute("data-pick-unit");
   });
+});
+
+/* Booking links: if the visitor already typed a name or email in the form, pass them to Cal.com */
+document.addEventListener("click", e => {
+  const link = e.target.closest("[data-cal]");
+  if (!link) return;
+  const name = (document.getElementById("name") || {}).value || "";
+  const email = (document.getElementById("email") || {}).value || "";
+  if (!name && !email) return;
+  const url = new URL(link.href);
+  if (name) url.searchParams.set("name", name.trim());
+  if (email) url.searchParams.set("email", email.trim());
+  link.href = url.toString();
 });
 
 /* Hide time-limited promo text automatically once the promo period is over */
