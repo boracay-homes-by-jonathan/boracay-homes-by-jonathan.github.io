@@ -354,6 +354,78 @@
   @keyframes zoomPulse{0%{transform:scale(1)}35%{transform:scale(1.14)}70%{transform:scale(.97)}100%{transform:scale(1)}}
   @media (prefers-reduced-motion: reduce){.actionbar a.primary.pulse .pulse-label{animation:none}}
   @media(min-width:860px){.actionbar{display:none}body{padding-bottom:0}}
+  /* ===== At a glance: RFO vs pre-selling chooser ===== */
+  .glance{background:var(--paper);padding:40px 0;border-bottom:1px solid var(--line)}
+  .glance-grid{display:grid;gap:14px;margin-top:18px}
+  @media(min-width:760px){.glance-grid{grid-template-columns:1fr 1fr}}
+  .path{border:1px solid var(--line);border-top:5px solid var(--c);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;background:#fff}
+  .path.rfo{--c:#2E7D5B}
+  .path.ps{--c:var(--gold)}
+  .path-tag{display:inline-block;align-self:flex-start;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--c);color:#fff}
+  .path.ps .path-tag{color:var(--deep)}
+  .path h3{font-family:var(--serif);font-size:26px;color:var(--deep);font-weight:600;margin:8px 0 2px;line-height:1.1}
+  .path .lead{font-size:14.5px;color:var(--muted);margin-bottom:10px}
+  .path table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:10px}
+  .path th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink);font-weight:600;text-align:left;padding:6px 4px}
+  .path td{padding:9px 4px;border-top:1px solid var(--line);vertical-align:top}
+  .path td small{display:block;color:var(--muted);font-size:12px}
+  .path td.num{text-align:right;white-space:nowrap;font-weight:600;color:var(--deep)}
+  .path .asof{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .path .btn{margin-top:auto;width:100%}
+  .path.rfo .btn{background:#2E7D5B;color:#fff}
+  .path.rfo .btn:hover{background:#276b4e}
+  /* Discount badges: hidden automatically by the stale-date script once the price list expires */
+  .disc{display:inline-block;background:#C0392B;color:#fff;font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:999px;vertical-align:middle;margin-left:6px;white-space:nowrap}
+  .disc.soft{background:#FBE3DF;color:#9B2C20}
+  .pay-summary .disc{color:#fff;font-size:11.5px}
+  .disc[hidden]{display:none}
+  .save-line{display:block;font-size:12px;font-weight:600;color:#9B2C20;margin-top:2px}
+  .save-line[hidden]{display:none}
+  /* ===== Sample computation toggle: big, gold, "Click me" (overrides the quieter style above) ===== */
+  .pay-details summary{position:relative;flex-direction:column;gap:2px;min-height:76px;padding:18px 20px 14px;margin-top:10px;background:var(--gold);color:var(--deep);border:2px solid var(--deep);border-radius:18px;box-shadow:0 6px 0 var(--deep);animation:ctaPulse 1.8s ease-in-out infinite}
+  .pay-details summary::after{content:none}
+  .pay-details summary:active{transform:translateY(4px);box-shadow:0 2px 0 var(--deep)}
+  .cta-pill{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#C0392B;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 3px 8px rgba(0,0,0,.18)}
+  .cta-pill .tap{display:inline-block;animation:tap 1s ease-in-out infinite}
+  .cta-main{font-size:17px;font-weight:700;line-height:1.2}
+  .cta-sub{font-size:12.5px;font-weight:500;opacity:.85}
+  .cta-open{display:none}
+  .pay-details[open] summary{background:var(--deep);color:#fff;box-shadow:none;animation:none;min-height:52px;padding:12px 16px}
+  .pay-details[open] .cta-pill,.pay-details[open] .cta-closed{display:none}
+  .pay-details[open] .cta-open{display:block;font-size:15px;font-weight:600}
+  @keyframes ctaPulse{0%,100%{box-shadow:0 6px 0 var(--deep),0 0 0 0 rgba(201,164,92,.7)}50%{box-shadow:0 6px 0 var(--deep),0 0 0 10px rgba(201,164,92,0)}}
+  @keyframes tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @media (prefers-reduced-motion: reduce){.cta-pill .tap{animation:none}}
+
+  /* ===== Booking cards: audience badges (fixed colors, readable on every theme) ===== */
+  .aud{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;padding:7px 14px;border-radius:999px;margin-bottom:6px;box-shadow:0 3px 8px rgba(0,0,0,.12)}
+  .aud.ofw{background:#1F5FAD}
+  .aud.ph{background:#B03A2E}
+  .book-card.ofw-card{border-top:5px solid #1F5FAD}
+  .book-card.ph-card{border-top:5px solid #B03A2E}
+
+  .glance-grid.single{grid-template-columns:1fr;max-width:620px}
+  /* Vertical dividers between the three payment options */
+  .cmp-row>span+span{border-left:2px solid var(--line)}
+  .cmp-row.hl>span+span{border-left-color:#d9ccb0}
+  .cmp-head>span+span{border-left:2px solid rgba(201,164,92,.45)}
+  .cmp-row{padding:0}
+  .cmp-row>span{padding:4px 4px 12px}
+  .cmp-head span.disc{margin:6px 0 0;display:inline-block;padding:3px 8px;font-size:10.5px}
+  .cmp-row span.save-line{font-size:11px;color:#9B2C20;padding:0;font-weight:600}
+  /* Booking cards: the label now uses the audience badge style */
+  .book-card .aud{margin-top:12px}
+  /* ===== Phones: quick-contact bar pinned to the TOP, four equal buttons; floating pill hidden ===== */
+  @media(max-width:859px){
+    .nav a.book-float{display:none}
+    body .actionbar{top:0;bottom:auto;grid-template-columns:repeat(4,1fr);border-top:0;border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.10)}
+    body .actionbar a{font-size:12px;font-weight:600;padding:0 2px;min-height:44px;white-space:nowrap;line-height:1.1}
+    body .actionbar a+a{border-left:1px solid var(--line)}
+    body .actionbar a.book{background:var(--deep);color:#fff;border-left-color:var(--deep)}
+    body .actionbar a.primary{border-left-color:var(--gold)}
+    body{padding-bottom:0;padding-top:44px}
+    html{scroll-padding-top:52px}
+  }
 </style>
 </head>
 <body>
@@ -377,7 +449,7 @@
 
         <div class="ctas">
           <a class="btn" href="#book">Book an appointment</a>
-          <a class="btn btn-outline" href="#prices">See unit prices</a>
+          <a class="btn btn-outline" href="#glance">See units &amp; prices</a>
         </div>
       </div>
       <div class="hero-img">
@@ -387,6 +459,34 @@
     </div>
   </div>
 </header>
+
+<!-- ===================== AT A GLANCE =====================
+     Starting list prices and unit counts copied from the price list and availability chart dated Nov 3, 2026.
+     Update together with the detailed sections below. -->
+<section class="glance" id="glance">
+  <div class="wrap">
+    <div class="kicker">Escana at a glance</div>
+    <h2>Tower 2, now pre-selling</h2>
+    <p class="muted">31 residences left in Tower 2. Pick one to see the details.</p>
+    <div class="glance-grid single">
+      <div class="path ps">
+        <span class="path-tag">🏗️ Pre-selling · Tower 2</span>
+        <h3>Your home in Boracay</h3>
+        <p class="lead">Station Zero · 31 of 85 units left</p>
+        <table>
+          <tr><th>Unit type</th><th style="text-align:right">From</th></tr>
+          <tr><td>Studio Deluxe<small>37.86 sqm · 5 units</small></td><td class="num">₱21,098,000</td></tr>
+          <tr><td>Studio Premium<small>45.92 – 45.96 sqm · 8 units</small></td><td class="num">₱25,639,000</td></tr>
+          <tr><td>Studio Flexi<small>50.61 – 51.81 sqm · 8 units</small></td><td class="num">₱28,666,000</td></tr>
+          <tr><td>1 BR Deluxe<small>54.33 sqm · 8 units</small></td><td class="num">₱30,415,000</td></tr>
+          <tr><td>1 BR Premium<small>60.33 – 61.70 sqm · 2 units</small></td><td class="num">₱33,591,000</td></tr>
+        </table>
+        <p class="asof">Price list and availability as of Nov 3, 2026</p>
+        <a class="btn" href="#prices">See the units</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===================== FEATURED: 1 BEDROOM ===================== -->
 <section class="featured" id="featured">
@@ -554,21 +654,21 @@
     <div class="kicker">Payment options</div>
     <h2>Three ways to pay</h2>
     <ul class="pay-summary">
-      <li><b>Spot cash</b><span class="promo-only">25% discount, pay in full within 30 days</span></li>
-      <li><b>5% spot, 20% over 48 months</b><span class="promo-only">5% discount, 75% balance via bank or cash</span></li>
+      <li><b>Spot cash <span class="disc">25% OFF</span></b><span class="promo-only">25% discount, pay in full within 30 days</span></li>
+      <li><b>5% spot, 20% over 48 months <span class="disc">5% OFF</span></b><span class="promo-only">5% discount, 75% balance via bank or cash</span></li>
       <li><b>20% down over 48 months</b><span>Most flexible, 80% balance via bank or cash</span></li>
     </ul>
 
     <details class="pay-details">
-      <summary>See the full payment breakdown</summary>
+      <summary><span class="cta-pill"><span class="tap">👆</span> Click me</span><span class="cta-main cta-closed">See the full payment breakdown</span><span class="cta-sub cta-closed">Monthly amounts and discounts, step by step</span><span class="cta-open">▲ Hide the breakdown</span></summary>
     <p class="muted" style="margin-top:14px">Example below: <strong>1 BR Deluxe, Unit 2F-A</strong> (available), list price <strong>₱30,415,000</strong>. Every option starts with a ₱300,000 reservation fee, which is already deducted from the amounts shown.</p>
 
     <!-- Quick comparison: columns = options, rows = payment stages (1 BR Deluxe 2F-A) -->
     <div class="cmp">
-      <div class="cmp-head"><span>1 · Spot cash</span><span>2 · 5% spot</span><span>3 · 20% down</span></div>
+      <div class="cmp-head"><span>1 · Spot cash<br><span class="disc">25% OFF</span></span><span>2 · 5% spot<br><span class="disc">5% OFF</span></span><span>3 · 20% down<br><span class="disc soft">No discount</span></span></div>
 
       <div class="cmp-label">Total price you pay</div>
-      <div class="cmp-row strong"><span>₱22,811,250<small>25% off</small></span><span>₱28,894,250<small>5% off</small></span><span>₱30,415,000<small>no discount</small></span></div>
+      <div class="cmp-row strong"><span>₱22,811,250<span class="save-line">You save ₱7,603,750</span></span><span>₱28,894,250<span class="save-line">You save ₱1,520,750</span></span><span>₱30,415,000<small>no discount</small></span></div>
 
       <div class="cmp-label">On reservation</div>
       <div class="cmp-row"><span>₱300,000</span><span>₱300,000</span><span>₱300,000</span></div>
@@ -757,9 +857,9 @@
     <h2>Pick a time that works for you</h2>
     <p class="muted">Choose the option that fits where you are now. You'll get a confirmation by email right after booking.</p>
     <div class="book-grid">
-      <div class="book-card">
+      <div class="book-card ofw-card">
         <img class="booth-video" src="images/lobby-1.jpg" alt="Escana Boracay lobby, artist's perspective" loading="lazy" width="740" height="381">
-        <div class="book-label">Abroad or OFW</div>
+        <div class="aud ofw">✈️ Abroad or OFW</div>
         <h3>Online presentation</h3>
         <ul>
           <li>One-on-one via Google Meet</li>
@@ -768,11 +868,11 @@
         </ul>
         <a class="btn" href="https://cal.com/jonathanrebullo-homes/escana-presentation" target="_blank" rel="noopener" data-cal>Book an online presentation</a>
       </div>
-      <div class="book-card">
+      <div class="book-card ph-card">
         <video class="booth-video" data-lazy-video muted loop playsinline preload="none" poster="images/booth-poster.jpg" width="720" height="1280" aria-label="The Escana booth at Evia, Cavite">
           <source data-src="videos/booth.mp4" type="video/mp4">
         </video>
-        <div class="book-label">In the Philippines</div>
+        <div class="aud ph">📍 In the Philippines</div>
         <h3>Meet in person</h3>
         <ul>
           <li>Meet me at the Escana booth and see the scale model</li>
@@ -955,7 +1055,8 @@
 <nav class="actionbar" aria-label="Quick contact">
   <a href="https://wa.me/639431301792" target="_blank" rel="noopener">WhatsApp</a>
   <a href="https://m.me/Jtanrebullo" target="_blank" rel="noopener" data-contact="messenger">Messenger</a>
-  <a class="primary" href="#book"><span class="pulse-label">Book appointment</span></a>
+  <a class="book" href="#book">📅 Book</a>
+  <a class="primary" href="#inquire"><span class="pulse-label">Inquire</span></a>
 </nav>
 
 <script>
@@ -1102,6 +1203,7 @@ document.addEventListener("click", e => {
   if (new Date() > PROMO_END) {
     document.querySelectorAll(".promo-only").forEach(el => { el.textContent = "Ask me for the latest terms"; el.classList.remove("promo-only"); });
     document.querySelectorAll(".promo-ended").forEach(el => el.hidden = false);
+    document.querySelectorAll(".disc, .save-line").forEach(el => { el.hidden = true; });
   }
 })();
 
